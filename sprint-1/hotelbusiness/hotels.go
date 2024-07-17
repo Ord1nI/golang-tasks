@@ -13,18 +13,18 @@ type Load struct {
 }
 
 func ComputeLoad(guests []Guest) []Load {
-	var min_date int = 100000
-	var max_date int = 0
+	var minDate int = 100000
+	var maxDate int = 0
 
 
 	m := make(map[int]int)
 
 	for _, i := range guests {
-		if i.CheckInDate < min_date {
-			min_date = i.CheckInDate
+		if i.CheckInDate < minDate {
+			minDate = i.CheckInDate
 		}
-		if i.CheckOutDate > max_date {
-			max_date = i.CheckOutDate
+		if i.CheckOutDate > maxDate {
+			maxDate = i.CheckOutDate
 		}
 		for q := i.CheckInDate; q < i.CheckOutDate; q++ {
 			m[q] += 1
@@ -33,10 +33,10 @@ func ComputeLoad(guests []Guest) []Load {
 
 	var loads []Load
 
-	for q, tmp_persons := min_date, 0; q <= max_date; q++ {
-		if tmp := m[q]; tmp != tmp_persons {
+	for q, tmpPersons := minDate, 0; q <= maxDate; q++ {
+		if tmp := m[q]; tmp != tmpPersons {
 			loads = append(loads, Load{q, tmp})
-			tmp_persons = tmp
+			tmpPersons = tmp
 		}
 	}
 

@@ -5,7 +5,7 @@ package speller
 
 
 
-var int_to_str map[int64]string = map[int64]string{
+var intToStr map[int64]string = map[int64]string{
 	0:"zero",
 	1:"one",
 	2:"two",
@@ -40,12 +40,12 @@ var int_to_str map[int64]string = map[int64]string{
 	1_000_000_000:"billion",
 }
 
-func spell_sup(n int64, order int64) string {
+func spellSup(n int64, order int64) string {
 	var str string
 
 
 	if del := n/100; del > 0 {
-		str+=int_to_str[del] + " hundred"
+		str+=intToStr[del] + " hundred"
 		n = n%100
 		if n != 0 {
 			str += " "
@@ -53,19 +53,19 @@ func spell_sup(n int64, order int64) string {
 	}
 
 	if n != 0 {
-		if v, ok := int_to_str[n]; ok {
+		if v, ok := intToStr[n]; ok {
 			str += v
 		} else {
-			str += int_to_str[n/10*10]
+			str += intToStr[n/10*10]
 			n = n % 10
 			if n != 0 {
 				str += "-"
-				str += int_to_str[n]
+				str += intToStr[n]
 			}
 		}
 	}
 	if order != 1 {
-		str += " " + int_to_str[order]
+		str += " " + intToStr[order]
 	}
 	return str
 
@@ -80,7 +80,7 @@ func Spell(n int64) string {
 		n*=-1
 	}
 
-	if v, ok := int_to_str[n]; ok {
+	if v, ok := intToStr[n]; ok {
 		if n < 100 {
 			return str + v
 		} else {
@@ -89,7 +89,7 @@ func Spell(n int64) string {
 	}
 
 	if n < 999 {
-		return str + spell_sup(n, 1)
+		return str + spellSup(n, 1)
 	}
 
 	for n / del ==0 {
@@ -99,7 +99,7 @@ func Spell(n int64) string {
 
 	for n != 0 {
 
-		str += spell_sup(n/del, del) + " "
+		str += spellSup(n/del, del) + " "
 
 		n = n % del
 		del = del / 1000
