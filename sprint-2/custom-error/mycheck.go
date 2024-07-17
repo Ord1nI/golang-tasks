@@ -15,14 +15,16 @@ var ErrNoTwoSpace = errors.New("no two spaces")
 type sErrors []error
 
 func (se sErrors) Error() string {
+	var b strings.Builder
+
 	if len(se) == 0 {
 		return "Unknown error"
 	}
-	str := ""
 	for _, i := range se {
-		str += i.Error() + ";"
+		b.WriteString(i.Error());
+		b.WriteRune(';');
 	}
-	return str[:len(str)-1]
+	return b.String()[:len(b.String())-1]
 }
 
 
