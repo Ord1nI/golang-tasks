@@ -119,10 +119,11 @@ func AssertEqual(t T, expected, actual interface{}, msgAndArgs ...interface{}) b
 		for _, i := range msgAndArgs {
 			if len(msgAndArgs) > 1 {
 				t.Errorf(i.(string), msgAndArgs[1:]...)
+				return false
 			} else {
 				t.Errorf(i.(string))
+				return false
 			}
-			return false
 		}
 		t.Errorf("")
 		return false
@@ -141,10 +142,11 @@ func AssertNotEqual(t T, expected, actual interface{}, msgAndArgs ...interface{}
 		for _, i := range msgAndArgs {
 			if len(msgAndArgs) > 1 {
 				t.Errorf(i.(string), msgAndArgs[1:]...)
+				return false
 			} else {
 				t.Errorf(i.(string))
+				return false
 			}
-			return false
 		}
 		t.Errorf("")
 		return false
@@ -159,10 +161,11 @@ func RequireEqual(t T, expected, actual interface{}, msgAndArgs ...interface{}) 
 		for _, i := range msgAndArgs {
 			if len(msgAndArgs) > 1 {
 				t.Errorf(i.(string), msgAndArgs[1:]...)
+				return
 			} else {
 				t.Errorf(i.(string))
+				return
 			}
-			return
 		}
 		t.Errorf("")
 	}
@@ -175,10 +178,11 @@ func RequireNotEqual(t T, expected, actual interface{}, msgAndArgs ...interface{
 		for _, i := range msgAndArgs {
 			if len(msgAndArgs) > 1 {
 				t.Errorf(i.(string), msgAndArgs[1:]...)
+				return
 			} else {
 				t.Errorf(i.(string))
+				return
 			}
-			return
 		}
 		t.Errorf("")
 	}
