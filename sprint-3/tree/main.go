@@ -86,9 +86,6 @@ func main() {
 
 func dirTreeSup(out io.Writer, path string, mask []byte, printFiles bool) error{
 	curDir, err := os.ReadDir(path)
-	fmt.Println(path)
-	fmt.Println(curDir)
-	fmt.Println(err)
 
 	if err != nil {
 		return err
